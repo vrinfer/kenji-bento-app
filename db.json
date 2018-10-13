@@ -1,0 +1,82 @@
+{
+  "menus": [
+    {
+      "id": 1,
+      "descripcion": "salteado de arroz con vegetales",
+      "imagen": "https://openclipart.org/image/800px/svg_to_png/301321/publicdomainq-bento.png",
+      "precio": 200
+    },
+    {
+      "descripcion": "udon",
+      "imagen": "https://openclipart.org/image/800px/svg_to_png/66865/ramen.png",
+      "precio": 325,
+      "id": 2
+    },
+    {
+      "descripcion": "ramen",
+      "imagen": "https://openclipart.org/image/800px/svg_to_png/66865/ramen.png",
+      "precio": 60,
+      "id": 3
+    }
+  ],
+  "pedidos": [
+    {
+      "id": 1,
+      "menus": [
+        {
+          "menuId": 2,
+          "cantidad": 1
+        }
+      ],
+      "cliente": {
+        "nombre": "Juan",
+        "apellido": "Tester",
+        "direccion": "calle falsa 123"
+      },
+      "importeTotal": 325,
+      "efectivo": 350,
+      "fechaHora": "",
+      "estado": "entregado"
+    },
+    {
+      "id": 2,
+      "menus": [
+        {
+          "menuId": 1,
+          "cantidad": 2
+        }
+      ],
+      "cliente": {
+        "nombre": "Raul",
+        "apellido": "Lopez",
+        "direccion": "Caece aula H64"
+      },
+      "importeTotal": 400,
+      "efectivo": 400,
+      "fechaHora": "",
+      "estado": "entregado"
+    },
+    {
+      "id": 3,
+      "menus": [
+        {
+          "menuId": 1,
+          "cantidad": 1
+        },
+        {
+          "menuId": 2,
+          "cantidad": 1
+        }
+      ],
+      "cliente": {
+        "nombre": "Ingeniero",
+        "apellido": "De Software",
+        "direccion": "Otra dire 987"
+      },
+      "importeTotal": 525,
+      "efectivo": 700,
+      "fechaHora": "",
+      "estado": "pendiente de envio"
+    }
+  ]
+}

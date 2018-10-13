@@ -1,0 +1,15 @@
+<div class="list-items">
+  <div *ngFor='let menu of menus' class="list-item" >
+    <div class="item-image">
+      <img [src]='menu.imagen'
+            [title]='menu.descripcion'
+            [style.width.px]='imageWidth'
+            [style.margin.px]='imageMargin'>
+    </div>
+    <div class="item-name">{{menu.descripcion}}</div>
+    <div class="item-price">
+      ${{menu.precio}}
+    </div>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Add ME ;)</a>
+  </div>
+</div>
