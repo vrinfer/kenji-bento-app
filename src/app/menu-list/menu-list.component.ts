@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { IMenu } from './menu';
+import { MenuService } from './menu.service';
 
 @Component({
   selector: 'app-menu-list',
@@ -7,34 +9,20 @@ import { IMenu } from './menu';
   styleUrls: ['./menu-list.component.css']
 })
 export class MenuListComponent implements OnInit {
-
   imageWidth: number = 300;
+  imageHeight: number = 160;
   imageMargin: number = 2;
+  
   menus: IMenu[] = [];
+  mensajeDeError : string = '';
 
-  constructor() { }
+  constructor(private menuService: MenuService) { }
 
   ngOnInit() {
-      this.menus = [
-        {
-          "id": 1,
-          "descripcion": "salteado de arroz con vegetales",
-          "imagen": "https://openclipart.org/image/800px/svg_to_png/301321/publicdomainq-bento.png",
-          "precio": 200
-        },
-        {
-          "descripcion": "udon",
-          "imagen": "https://openclipart.org/image/800px/svg_to_png/66865/ramen.png",
-          "precio": 325,
-          "id": 2
-        },
-        {
-          "descripcion": "ramen",
-          "imagen": "https://openclipart.org/image/800px/svg_to_png/66865/ramen.png",
-          "precio": 60,
-          "id": 3
-        }
-      ];
+      this.menuService.getMenus().subscribe(
+        menus => this.menus = menus,
+        error => this.mensajeDeError = error
+      )
   }
 
 }
