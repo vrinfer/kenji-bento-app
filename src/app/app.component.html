@@ -1,15 +1,20 @@
 <app-layout>
-  <!-- <div class="jumbotron">
-    <h1 class="display-5">Menú del día</h1>
-    <p class="lead">El mejor bento de la history</p>
-    <hr class="my-4">
-    <p>Para Ing de SW II.</p>
-  </div> -->
+  <nav class='navbar navbar-expand navbar-light bg-light'>
+    <a class='navbar-brand'>El mejor bento de la history.</a>
+    <ul class='nav nav-pills'>
+      <li>
+        <a class='nav-link' [routerLink]="['/carrito']">
+          <i class="fa fa-shopping-cart"> {{(menusSeleccionados$ | async).length}}</i>
+        </a>
+      </li>
+    </ul>
+  </nav>
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-5">Menú del día</h1>
-      <p class="lead">El mejor bento de la history.</p>
     </div>
   </div>
-  <app-menu-list></app-menu-list>
+  <div class='container'>
+    <router-outlet></router-outlet>
+  </div>
 </app-layout>
