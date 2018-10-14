@@ -1,32 +1,49 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, Subject, Subscriber} from 'rxjs';
 
-import { IMenu } from '../menu-list/menu';
+import { Menu } from '../menu-list/menu';
+import { CarritoItem } from '../carrito/carrito-item';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CarritoService {
-  private menusEnCarritoSubject: BehaviorSubject<IMenu[]> = new BehaviorSubject([]);
-  private menusEnCarrito: IMenu[] = [];
+  private itemsEnCarritoSubject: BehaviorSubject<CarritoItem[]> = new BehaviorSubject([]);
+  private itemsEnCarrito: CarritoItem[] = [];
 
   constructor() { 
-    this.menusEnCarritoSubject.subscribe(x => this.menusEnCarrito = x);
+    this.itemsEnCarritoSubject.subscribe(x => this.itemsEnCarrito = x);
   }
 
-  public agregarAlCarrito(menu: IMenu) {
-    this.menusEnCarritoSubject.next([...this.menusEnCarrito, menu]);
-    console.log('Se agregó el menú: ' + menu.id); 
+  public agregarAlCarrito(menu: Menu, cantidad: number = 1) {
+    const item = this.itemsEnCarrito.find(x => x.menu === menu);
+    if(item !== undefined) {
+      item.cantidad += cantidad;
+      this.itemsEnCarritoSubject.next([...this.itemsEnCarrito]);
+    } else {
+      const newItem = new CarritoItem(menu, cantidad);
+      this.itemsEnCarritoSubject.next([...this.itemsEnCarrito, newItem]);
+    }
+    console.log('Se agregaron: ' + cantidad + ' menú/s ' + menu.id); 
   }
 
-  public sacarDelCarrito(menu: IMenu) {
-    const menusActuales = [...this.menusEnCarrito];
-    const menusRestantes = menusActuales.filter(x => x.id !== menu.id);
-    this.menusEnCarritoSubject.next(menusRestantes);
+  public sacarDelCarrito(menu: Menu) {
+    const menusActuales = [...this.itemsEnCarrito];
+    const menusRestantes = menusActuales.filter(x => x.menu.id !== menu.id);
+    this.itemsEnCarritoSubject.next(menusRestantes);
   }
 
-  public getMenus() : Observable<IMenu[]> {
-    return this.menusEnCarritoSubject;
+  public modificarCantidad(menu: Menu, cantidad: number) {
+    const item = this.itemsEnCarrito.find(x => x.menu === menu);
+  
+    if(item !== undefined) {
+      item.cantidad = cantidad;
+    } 
+    this.itemsEnCarritoSubject.next([...this.itemsEnCarrito]);
+  }
+
+  public getItems() : Observable<CarritoItem[]> {
+    return this.itemsEnCarritoSubject;
   }
 }

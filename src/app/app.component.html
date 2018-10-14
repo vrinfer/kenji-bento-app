@@ -1,20 +1,11 @@
 <app-layout>
   <nav class='navbar navbar-expand navbar-light bg-light'>
-    <a class='navbar-brand'>El mejor bento de la history.</a>
-    <ul class='nav nav-pills'>
-      <li>
-        <a class='nav-link' [routerLink]="['/carrito']">
-          <i class="fa fa-shopping-cart"> {{(menusSeleccionados$ | async).length}}</i>
-        </a>
-      </li>
-    </ul>
+    <a class='navbar-brand'>Menu del día</a>
   </nav>
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-5">Menú del día</h1>
-    </div>
-  </div>
   <div class='container'>
     <router-outlet></router-outlet>
   </div>
+  <div *ngIf='(menusSeleccionados$ | async).length'>
+    <a class="btn btn-primary"  [routerLink]="['/carrito']" role="button">Ir al pedido</a>  
+  </div>  
 </app-layout>

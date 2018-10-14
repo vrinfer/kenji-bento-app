@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NumberPickerComponent } from 'ng-number-picker';
 
-import { IMenu } from './menu';
+import { Menu } from './menu';
 import { MenuService } from './menu.service';
 import { CarritoService } from '../shared/carrito.service';
 
@@ -13,10 +15,12 @@ export class MenuListComponent implements OnInit {
   imageHeight: number = 160;
   imageMargin: number = 2;
   
-  menus: IMenu[] = [];
+  menus: Menu[] = [];
+  cantidadSeleccionada: number;
+
   mensajeDeError : string = '';
 
-  constructor(private menuService: MenuService, private carritoService: CarritoService) { }
+  constructor(private menuService: MenuService, private carritoService: CarritoService, private modalService: NgbModal) { }
 
   ngOnInit() {
       this.menuService.getMenus().subscribe(
@@ -25,12 +29,21 @@ export class MenuListComponent implements OnInit {
       )
   }
 
-  public agregarAlCarrito(menu: IMenu) {
-    this.carritoService.agregarAlCarrito(menu);
+  ngOnChange() {
+    this.menuService.getMenus().subscribe(
+      menus => this.menus = menus,
+      error => this.mensajeDeError = error
+    )
   }
 
-  public sacarDelCarrito(menu: IMenu) {
-    this.carritoService.sacarDelCarrito(menu);
+  public agregarAlCarrito(menu: Menu, content) {
+    this.modalService.open(content, { size: 'sm' }).result.then((result) => {
+      debugger;
+      this.carritoService.agregarAlCarrito(menu, this.cantidadSeleccionada);
+    });
   }
 
+  public sacarDelCarrito(menu: Menu) {
+     this.carritoService.sacarDelCarrito(menu);
+  }
 }

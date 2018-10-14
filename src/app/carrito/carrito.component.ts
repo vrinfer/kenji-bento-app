@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IMenu } from 'src/app/menu-list/menu';
+import { Menu } from 'src/app/menu-list/menu';
 import { CarritoService } from 'src/app/shared/carrito.service';
+import { CarritoItem } from './carrito-item';
 
 @Component({
   selector: 'app-carrito',
@@ -8,15 +9,15 @@ import { CarritoService } from 'src/app/shared/carrito.service';
   styleUrls: ['./carrito.component.css']
 })
 export class CarritoComponent implements OnInit {
-  menus: IMenu[] = [];
+  items: CarritoItem[] = [];
   
   constructor(private carritoService: CarritoService) { }
 
   ngOnInit() {
-    this.carritoService.getMenus().subscribe(menus => this.menus = menus);
+    this.carritoService.getItems().subscribe(menus => this.items = menus);
   }
 
-  public sacarDelCarrito(menu: IMenu) {
+  public sacarDelCarrito(menu: Menu) {
     this.carritoService.sacarDelCarrito(menu);
   }
 }

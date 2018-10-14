@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError, tap } from 'rxjs/operators';
-import { IMenu } from './menu';
+
+import { Menu } from './menu';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ export class MenuService {
   constructor(private http : HttpClient) { }
 
   //TODO eliminar el tap y usar otro catch del error para que muestre un mensaje amigable en pantalla.
-  getMenus(): Observable<IMenu[]> {
-    return this.http.get<IMenu[]>(this.serviceUrl).pipe(
+  getMenus(): Observable<Menu[]> {
+    return this.http.get<Menu[]>(this.serviceUrl).pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),
         catchError(this.handleError)
     );

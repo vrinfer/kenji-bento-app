@@ -1,4 +1,4 @@
-export interface IMenu {
+export class Menu {
     id : number;
     descripcion: string;
     imagen: string;

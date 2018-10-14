@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { CarritoService } from './shared/carrito.service';
-import { IMenu } from './menu-list/menu';
+import { CarritoItem } from './carrito/carrito-item';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +11,11 @@ import { IMenu } from './menu-list/menu';
 })
 export class AppComponent {
   title = 'kenji-bento-app';
-  public menusSeleccionados$: Observable<IMenu[]>; //ver que es el $
+  public menusSeleccionados$: Observable<CarritoItem[]>; //ver que es el $
 
   constructor(private carritoService: CarritoService) { 
-    this.menusSeleccionados$ = this.carritoService.getMenus();
+    this.menusSeleccionados$ = this.carritoService.getItems();
 
     this.menusSeleccionados$.subscribe(x => x);
-   } 
-
+   }
 }

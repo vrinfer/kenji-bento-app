@@ -1,0 +1,29 @@
+<div class='card-body'>
+  <div class='col-md-6'>
+      <h4>Carrito</h4>
+  </div>
+</div>
+<div class='table-responsive'>
+  <table class='table'
+      *ngIf='items && items.length'>
+      <thead>
+          <tr>
+              <th>Id</th>
+              <th>Descripcion</th>
+              <th>Cantidad</th>
+              <th>Precio Unit</th>
+              <th></th>
+              <th></th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor='let item of items'>
+              <td>{{item.menu.id}}</td>
+              <td>{{item.menu.descripcion}}</td>
+              <td>{{item.cantidad}}</td>
+              <td>{{item.menu.precio}}</td>
+              <td><button class='btn btn-primary' (click)='sacarDelCarrito(item.menu)'>Sacar</button></td>
+          </tr>
+      </tbody>
+  </table>
+</div>
