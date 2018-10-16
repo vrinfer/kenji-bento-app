@@ -3,27 +3,14 @@
       <h4>Carrito</h4>
   </div>
 </div>
-<div class='table-responsive'>
-  <table class='table'
-      *ngIf='items && items.length'>
-      <thead>
-          <tr>
-              <th>Id</th>
-              <th>Descripcion</th>
-              <th>Cantidad</th>
-              <th>Precio Unit</th>
-              <th></th>
-              <th></th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor='let item of items'>
-              <td>{{item.menu.id}}</td>
-              <td>{{item.menu.descripcion}}</td>
-              <td>{{item.cantidad}}</td>
-              <td>{{item.menu.precio}}</td>
-              <td><button class='btn btn-primary' (click)='sacarDelCarrito(item.menu)'>Sacar</button></td>
-          </tr>
-      </tbody>
-  </table>
+
+<div class="list-group-flush">
+    <div *ngFor='let item of items' style='display: inline-block;' routerLink="" (click)="agregarAlCarrito(menu, content)" class="list-group-item list-group-item-action flex-column align-items-start">
+        <p class="mb-1">x {{item.cantidad}}</p>
+        <strong>{{item.menu.descripcion}}</strong>
+        <div>
+            <p style='float: left;' class="mb-1">{{item.menu.precio | currency: '$':'symbol':'1.2-2'}}</p>
+            <a style='float: right;' class='' class="fa fa-trash" (click)='sacarDelCarrito(item.menu)'></a>
+        </div>
+    </div>
 </div>

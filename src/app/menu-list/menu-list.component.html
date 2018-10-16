@@ -4,23 +4,14 @@
   <p>Día nuevo, menú nuevo: por cada día de la semana tenemos un plato diferente cocinado con las recetas más ricas de la tierra del sol naciente, Japón.</p>
 </div>
 
-<div class="list-items">
-  <div *ngFor='let menu of menus' class="list-item" >
-    <div class="item-image">
-      <img [src]='menu.imagen'
-            [title]='menu.descripcion'
-            [style.width.px]='imageWidth'
-            [style.height.px]='imageHeight'
-            [style.margin.px]='imageMargin'>
-    </div>
-    <div class="item-name">{{menu.descripcion}}</div>
-    <div class="item-price">
-      ${{menu.precio}}
-    </div>
-    <div>
-      <a class="btn btn-primary" (click)="agregarAlCarrito(menu, content)" role="button">Agregar</a>  
-    </div>
-  </div>
+<div class="list-group-flush menu-list">
+  <a *ngFor='let menu of menus' style='display: inline-block;' routerLink="" (click)="agregarAlCarrito(menu, content)" class="list-group-item list-group-item-action flex-column align-items-start">
+    <img class="" 
+      [src]='menu.imagen'
+      [title]='menu.descripcion' style="width: 100px; height: 75px;float: right;">
+    <p class="mb-1">{{menu.descripcion}}</p>
+    <small><strong>{{menu.precio | currency: '$':'symbol':'1.2-2'}}</strong></small>
+  </a>
 </div>
 
 <ng-template #content let-modal>
@@ -31,7 +22,7 @@
     </button>
   </div>
   <div class="modal-body">
-      <ng-number-picker [(value)]="cantidadSeleccionada"></ng-number-picker>
+      <ng-number-picker [min]="'1'" [max]="'10'" [step]="'1'"  [(value)]="cantidadSeleccionada"></ng-number-picker>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>

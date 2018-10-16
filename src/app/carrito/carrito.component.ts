@@ -18,6 +18,7 @@ export class CarritoComponent implements OnInit {
   }
 
   public sacarDelCarrito(menu: Menu) {
+    debugger;
     this.carritoService.sacarDelCarrito(menu);
   }
 }

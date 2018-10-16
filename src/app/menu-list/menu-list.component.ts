@@ -11,10 +11,6 @@ import { CarritoService } from '../shared/carrito.service';
   styleUrls: ['./menu-list.component.css']
 })
 export class MenuListComponent implements OnInit {
-  imageWidth: number = 300;
-  imageHeight: number = 160;
-  imageMargin: number = 2;
-  
   menus: Menu[] = [];
   cantidadSeleccionada: number;
 
@@ -38,7 +34,6 @@ export class MenuListComponent implements OnInit {
 
   public agregarAlCarrito(menu: Menu, content) {
     this.modalService.open(content, { size: 'sm' }).result.then((result) => {
-      debugger;
       this.carritoService.agregarAlCarrito(menu, this.cantidadSeleccionada);
     });
   }
