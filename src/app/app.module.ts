@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { NumberPickerModule } from 'ng-number-picker';
 
 import { AppComponent } from './app.component';
-import { UiModule } from './ui/ui.module';
 import { MenuListComponent } from './menu-list/menu-list.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,7 +18,6 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     BrowserModule,
-    UiModule,
     HttpClientModule,
     NgbModalModule.forRoot(),
     FormsModule,

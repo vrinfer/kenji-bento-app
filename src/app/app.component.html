@@ -1,11 +1,12 @@
-<app-layout>
-  <nav class='navbar navbar-expand navbar-light bg-light'>
-    <a class='navbar-brand'>Menu del día</a>
-  </nav>
-  <div class='container'>
-    <router-outlet></router-outlet>
-  </div>
+<nav class="navbar navbar-dark bg-dark mb-5">
+  <a class="navbar-brand" href="/">Kenji Bento</a>
   <div *ngIf='(menusSeleccionados$ | async).length'>
     <a class="btn btn-primary"  [routerLink]="['/carrito']" role="button">Ir al pedido</a>  
-  </div>  
-</app-layout>
+  </div>
+</nav>
+<div class="container">
+  <ng-content></ng-content>
+</div>
+<div class='container'>
+  <router-outlet></router-outlet>
+</div>
