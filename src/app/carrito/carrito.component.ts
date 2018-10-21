@@ -36,10 +36,6 @@ export class CarritoComponent implements OnInit {
 
   public pedir(content) {
     this.router.navigate(['/pedido']);
-    // this.modalService.open(content).result.then((result) => {
-    //   const datosCliente = this.cliente;
-    //   this.crearPedido(this.items, datosCliente, this.efectivo);
-    // });
   }
 
   public volverAlMenu() {
