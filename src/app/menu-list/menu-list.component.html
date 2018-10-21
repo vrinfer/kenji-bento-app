@@ -22,8 +22,10 @@
     </button>
   </div>
   <div class="modal-body">
-      <ng-number-picker [min]="'1'" [max]="'10'" [step]="'1'"  [(value)]="cantidadSeleccionada"></ng-number-picker>
-  </div>
+      <ng-number-picker [min]="'1'" [max]="'10'" [step]="'1'"  
+      buttonsOrientation = "'vertical'" inputReadOnly="true" size="'large'"
+      [(value)]="cantidadSeleccionada"></ng-number-picker>
+    </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
   </div>

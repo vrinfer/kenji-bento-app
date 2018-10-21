@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { CarritoService } from './shared/carrito.service';
+import { CarritoService } from './services/carrito.service';
 import { CarritoItem } from './carrito/carrito-item';
 
 @Component({

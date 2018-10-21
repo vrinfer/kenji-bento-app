@@ -3,8 +3,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NumberPickerComponent } from 'ng-number-picker';
 
 import { Menu } from './menu';
-import { MenuService } from './menu.service';
-import { CarritoService } from '../shared/carrito.service';
+import { MenuService } from '../services/menu.service';
+import { CarritoService } from '../services/carrito.service';
 
 @Component({
   templateUrl: './menu-list.component.html',

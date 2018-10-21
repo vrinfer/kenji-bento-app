@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError, tap } from 'rxjs/operators';
 
-import { Menu } from './menu';
+import { Menu } from '../menu-list/menu';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +31,5 @@ export class MenuService {
     }
     console.error(errorMessage);
     return throwError(errorMessage);
-}
+  }
 }

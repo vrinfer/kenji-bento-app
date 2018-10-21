@@ -14,3 +14,29 @@
         </div>
     </div>
 </div>
+
+<button type="button" class="btn btn-outline-danger" (click)='pedir(content)'>Pedir</button>
+<button type="button" class="btn btn-outline-danger" (click)='volverAlMenu()'>Volver Al Menu</button>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="dateOfBirth">Date of birth</label>
+      <div class="input-group">
+        <input type='text' placeholder="Nombre" [(ngModel)]='cliente.Nombre' />
+        <input type='text' placeholder="Apellido" [(ngModel)]='cliente.Apellido' />
+        <input type='text' placeholder="Dirección" [(ngModel)]='cliente.Direccion' />
+        <input type='text' placeholder="Efectivo" [(ngModel)]='efectivo' />
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Aceptar</button>
+  </div>
+</ng-template>
