@@ -16,8 +16,7 @@ export class PedidoService {
 
   constructor(private http : HttpClient) {}
 
-  //TODO chequear que onda esto porque mepa que no pasa
-  //TODO Agregar validación de precio / datos del cliente
+  //TODO Agregar validación de precio
   public crearPedido(items: CarritoItem[], cliente: Cliente, efectivo: number): Observable<number> {
     let menus = items.map(item => ({menuId: item.menu.id, cantidad: item.cantidad}));
     return this.http.post<Pedido>(this.serviceUrl, 
@@ -36,10 +35,11 @@ export class PedidoService {
       }));
   }
 
-  public consultarPedido(id: number, email: string) {
-    return this.http.get<Pedido[]>(this.serviceUrl + '/' + id).pipe(
-      tap(data => console.log('All: ' + JSON.stringify(data))),
-      catchError(this.handleError)
+  public consultarPedido(nombre: string, apellido: string, numeroPedido: number): Observable<Pedido | undefined>{
+    return this.getPedidos().pipe(
+      map((products: Pedido[]) => products.find(p => p.id === numeroPedido 
+        && p.cliente.nombre === nombre
+        && p.cliente.apellido === apellido))
     );
   }
 

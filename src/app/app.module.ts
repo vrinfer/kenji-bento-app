@@ -10,7 +10,11 @@ import { MenuListComponent } from './menu-list/menu-list.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { PedidoComponent } from './pedido/pedido.component';
-import { ConfirmacionComponent } from './pedido/confirmacion/confirmacion.component';
+import { ConfirmacionComponent } from './pedido/confirmacion-modal/confirmacion.component';
+import { ConsultaComponent } from './pedido/consulta/consulta.component';
+import { ErrorComponent } from './shared/error/error.component';
+import { RespuestaComponent } from './pedido/consulta-modal/respuesta/respuesta.component';
+import { EstadoComponent } from './pedido/consulta/estado/estado.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { ConfirmacionComponent } from './pedido/confirmacion/confirmacion.compon
     MenuListComponent,
     CarritoComponent,
     PedidoComponent,
-    ConfirmacionComponent
+    ConfirmacionComponent,
+    ConsultaComponent,
+    ErrorComponent,
+    RespuestaComponent,
+    EstadoComponent
   ],
   imports: [
     BrowserModule,
@@ -31,12 +39,16 @@ import { ConfirmacionComponent } from './pedido/confirmacion/confirmacion.compon
       { path: 'menus', component: MenuListComponent },
       { path: 'carrito', component: CarritoComponent },
       { path: 'pedido', component: PedidoComponent },
-      // { path: 'consulta-pedido', component: ConsultaPedidoComponent},
+      { path: 'consulta-pedido', component: ConsultaComponent},
       { path: '', redirectTo: 'menus', pathMatch: 'full' },
       { path: '**', redirectTo: 'menus', pathMatch: 'full' }
     ])
   ],
-  entryComponents:[ ConfirmacionComponent ],
+  entryComponents:[ 
+    ConfirmacionComponent, 
+    EstadoComponent,
+    ErrorComponent 
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

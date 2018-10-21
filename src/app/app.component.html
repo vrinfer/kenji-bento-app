@@ -7,6 +7,7 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link" [routerLink]="['/menu']">Menú<span class="sr-only">(current)</span></a>
       <a *ngIf='(menusSeleccionados$ | async).length' class="nav-item nav-link" [routerLink]="['/carrito']">Ir al pedido</a>
+      <a class="nav-item nav-link" [routerLink]="['/consulta-pedido']">Consultar Pedido</a>
     </div>
   </div>
 </nav>

@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 
 import { Menu } from 'src/app/menu-list/menu';
 import { CarritoService } from '../services/carrito.service';
 import { CarritoItem } from './carrito-item';
-import { PedidoService } from '../services/pedido.service';
 import { Cliente } from '../pedido/cliente';
 
 @Component({
@@ -21,8 +19,6 @@ export class CarritoComponent implements OnInit {
   items: CarritoItem[] = [];
   
   constructor(private carritoService: CarritoService, 
-              private pedidoService: PedidoService, 
-              private modalService: NgbModal,
               private router: Router) { }
 
   ngOnInit() {

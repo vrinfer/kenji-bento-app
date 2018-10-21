@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl, FormBuilder  } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
 import { Cliente } from './cliente';
 import { CarritoItem } from '../carrito/carrito-item';
 import { PedidoService } from '../services/pedido.service';
 import { CarritoService } from '../services/carrito.service';
-import { Router } from '@angular/router';
-import { ConfirmacionComponent } from './confirmacion/confirmacion.component';
+import { ConfirmacionComponent } from './confirmacion-modal/confirmacion.component';
+import { ErrorComponent } from '../shared/error/error.component';
 
 @Component({
   selector: 'app-pedido',
@@ -23,9 +23,7 @@ export class PedidoComponent implements OnInit {
   
   constructor(private carritoService: CarritoService, 
               private pedidoService: PedidoService, 
-              private modalService: NgbModal,
-              private router: Router,
-              private fb: FormBuilder) {
+              private modalService: NgbModal) {
     this.profileForm = new FormGroup({
       nombre: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
       apellido: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
@@ -54,12 +52,10 @@ export class PedidoComponent implements OnInit {
         const modalRef = this.modalService.open(ConfirmacionComponent);
         modalRef.componentInstance.numeroPedido = this.numeroPedido;
       },
-      error => this.mensajeDeError = error,
-      
+      error => {
+        const modalRef = this.modalService.open(ErrorComponent);
+        modalRef.componentInstance.mensajeDeError = "No pudimos registrar tu pedido, por favor intenta nuevamente más tarde.";
+      },
     );
-  }
-
-  volverAlCarrito() {
-    this.router.navigate(['/carrito']);
   }
 }
