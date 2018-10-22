@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable, Subject, Subscriber} from 'rxjs';
 
 import { Menu } from '../menu-list/menu';
 import { CarritoItem } from '../carrito/carrito-item';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

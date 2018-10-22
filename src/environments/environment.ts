@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  allowConsoleLogging: true,
+  apiEndpointUrl: 'http://localhost:3000/',
+  pedidoEndpoint: 'pedidos',
+  menuEndpoint: 'menus'
 };
 
 /*

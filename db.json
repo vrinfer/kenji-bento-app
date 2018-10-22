@@ -319,6 +319,22 @@
       "importeTotal": 600,
       "efectivo": 6000,
       "id": 18
+    },
+    {
+      "menus": [
+        {
+          "menuId": 1,
+          "cantidad": 3
+        }
+      ],
+      "cliente": {
+        "nombre": "Valeria",
+        "apellido": "Infer",
+        "direccion": "Padilla"
+      },
+      "importeTotal": 600,
+      "efectivo": 5555,
+      "id": 19
     }
   ]
 }
