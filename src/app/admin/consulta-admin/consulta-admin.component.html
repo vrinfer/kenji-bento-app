@@ -1,0 +1,46 @@
+<div class='card-body'>
+  <div class='col-md-6'>
+      <h4>Pedidos</h4>
+  </div>
+</div>
+
+<div class="list-group-flush">
+    <div *ngFor='let pedido of pedidos' style='display: inline-block;' (click)="seleccionarEstado(pedido.id, contentadmin)" class="list-group-item list-group-item-action flex-column align-items-start">
+        <p class="mb-1">Id {{pedido.id}} {{pedido.fechaHora}} - {{pedido.estado}}</p>
+        <div *ngFor='let menu of pedido.menus' style='display: inline-block;'>
+          <strong>Menú {{menu.menuId}} : Cantidad: {{menu.cantidad}} -</strong>
+        </div>
+        <p class="mb-1">{{pedido.cliente.nombre}} - {{pedido.cliente.apellido}} - {{pedido.cliente.direccion}}</p>
+        <div>
+            <p style='float: left;' class="mb-1">{{pedido.importeTotal | currency: '$':'symbol':'1.2-2'}}</p>
+        </div>
+    </div>
+</div>
+
+<ng-template #contentadmin let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Estado</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="col">
+          <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-outline-primary nav-link dropdown-toggle" id="dropdownBasic1" ngbDropdownToggle>{{estado !== '' ? estado : 'Seleccionar' }}</button>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownBasic1" ngbDropdownMenu >
+                <button class="dropdown-item" (click)="setEstado('creado')">Creado</button>
+                <button class="dropdown-item" (click)="setEstado('aceptado')">Aceptado</button>
+                <button class="dropdown-item" (click)="setEstado('entregado')">Entregado</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Aceptar</button>
+  </div>  
+</ng-template>

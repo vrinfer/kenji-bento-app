@@ -46,4 +46,9 @@ export class CarritoService {
   public getItems() : Observable<CarritoItem[]> {
     return this.itemsEnCarritoSubject;
   }
+
+  public vaciarCarrito(): void{
+    this.itemsEnCarritoSubject.next([]);
+    this.itemsEnCarrito = [];
+  }
 }

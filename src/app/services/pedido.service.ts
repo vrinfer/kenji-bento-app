@@ -45,13 +45,23 @@ export class PedidoService {
 
   public getPedidos() : Observable<Pedido[]>{
     return this.http.get<Pedido[]>(this.serviceUrl).pipe(
-      tap(data => console.log('All: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
 
-  public cambiarEstadoPedido(numeroPedido: number, nuevoEstado: string) {
-      //Fijarse que onda como está hecho esto en el dashboard de torchx.
+  public cambiarEstadoPedido(numeroPedido: number, nuevoEstado: string) : Observable<any> {
+    return this.http.patch<Pedido>(this.serviceUrl + '/' + numeroPedido, 
+      { 
+        estado: nuevoEstado, 
+      }, 
+      { 
+        headers: new HttpHeaders({'Content-Type':  'application/json' }), 
+        observe: 'response' 
+      })
+      .pipe(map((response) => {
+        return response.body.id;
+      }),
+      catchError(this.handleError));
   }
 
   private handleError(err: HttpErrorResponse) {

@@ -17,7 +17,6 @@ export class MenuService {
   //TODO eliminar el tap y usar otro catch del error para que muestre un mensaje amigable en pantalla.
   getMenus(): Observable<Menu[]> {
     return this.http.get<Menu[]>(this.serviceUrl).pipe(
-        tap(data => console.log('All: ' + JSON.stringify(data))),
         catchError(this.handleError)
     );
   }

@@ -19,10 +19,10 @@ export class MenuListComponent implements OnInit {
   constructor(private menuService: MenuService, private carritoService: CarritoService, private modalService: NgbModal) { }
 
   ngOnInit() {
-      this.menuService.getMenus().subscribe(
-        menus => this.menus = menus,
-        error => this.mensajeDeError = error
-      )
+    this.menuService.getMenus().subscribe(
+      menus => this.menus = menus,
+      error => this.mensajeDeError = error
+    )
   }
 
   ngOnChange() {

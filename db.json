@@ -21,7 +21,6 @@
   ],
   "pedidos": [
     {
-      "id": 1,
       "menus": [
         {
           "menuId": 2,
@@ -34,9 +33,10 @@
         "direccion": "calle falsa 123"
       },
       "importeTotal": 325,
-      "efectivo": 350,
+      "efectivo": 450,
       "fechaHora": "",
-      "estado": "entregado"
+      "estado": "aceptado",
+      "id": 1
     },
     {
       "id": 2,
@@ -76,7 +76,7 @@
       "importeTotal": 525,
       "efectivo": 700,
       "fechaHora": "",
-      "estado": "pendienewnte de envio"
+      "estado": "creado"
     },
     {
       "menus": [
@@ -269,6 +269,56 @@
       "importeTotal": 325,
       "efectivo": 765,
       "id": 15
+    },
+    {
+      "menus": [
+        {
+          "menuId": 2,
+          "cantidad": 1
+        }
+      ],
+      "cliente": {
+        "nombre": "Valeria",
+        "apellido": "Infer",
+        "direccion": "Padilla"
+      },
+      "importeTotal": 325,
+      "efectivo": 2343,
+      "id": 16
+    },
+    {
+      "menus": [
+        {
+          "menuId": 2,
+          "cantidad": 1
+        }
+      ],
+      "cliente": {
+        "nombre": "Juan",
+        "apellido": "Tester",
+        "direccion": "calle falsa 123"
+      },
+      "importeTotal": 325,
+      "efectivo": 500,
+      "fechaHora": "",
+      "estado": "entregado",
+      "id": 17
+    },
+    {
+      "menus": [
+        {
+          "menuId": 1,
+          "cantidad": 3
+        }
+      ],
+      "cliente": {
+        "nombre": "Valeria",
+        "apellido": "Infer",
+        "direccion": "Padilla"
+      },
+      "importeTotal": 600,
+      "efectivo": 6000,
+      "id": 18
     }
   ]
 }

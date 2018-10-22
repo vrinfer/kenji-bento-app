@@ -8,5 +8,10 @@ export class Pedido {
     fechaHora: Date;
     estado: "entregado";
     cliente: Cliente;
-    menus: Menu[];
+    menus: MenuPedido[];
+}
+
+export class MenuPedido {
+    menuId: number;
+    cantidad: number;
 }

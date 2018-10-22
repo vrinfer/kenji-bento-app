@@ -33,8 +33,4 @@ export class CarritoComponent implements OnInit {
   public pedir(content) {
     this.router.navigate(['/pedido']);
   }
-
-  public volverAlMenu() {
-    this.router.navigate(['/menu']);
-  }
 }

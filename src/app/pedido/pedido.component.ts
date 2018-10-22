@@ -46,16 +46,30 @@ export class PedidoComponent implements OnInit {
   }
 
   public crearPedido(datosCliente: Cliente, efectivo: number){
-    this.pedidoService.crearPedido(this.items, datosCliente, efectivo).subscribe(
-      numeroPedido => {
-        this.numeroPedido = numeroPedido;
-        const modalRef = this.modalService.open(ConfirmacionComponent);
-        modalRef.componentInstance.numeroPedido = this.numeroPedido;
-      },
-      error => {
-        const modalRef = this.modalService.open(ErrorComponent);
-        modalRef.componentInstance.mensajeDeError = "No pudimos registrar tu pedido, por favor intenta nuevamente más tarde.";
-      },
-    );
+    const total = this.items.map(x=> x.menu.precio * x.cantidad).reduce((sum, current) => sum + current);
+    if(efectivo < total) {
+      this.mostrarError(`Por favor ingresá un importe mayor o igual al importe total del pedido ($${total}).`);
+    } else {
+      this.pedidoService.crearPedido(this.items, datosCliente, efectivo).subscribe(
+        numeroPedido => {
+          this.numeroPedido = numeroPedido;
+          this.mostrarConfirmacion(this.numeroPedido);
+          this.carritoService.vaciarCarrito();
+        },
+        error => {
+          this.mostrarError("No pudimos registrar tu pedido, por favor intenta nuevamente más tarde.");
+        },
+      );
+    }
+  }
+
+  public mostrarConfirmacion(numeroPedido: number) {
+    const modalRef = this.modalService.open(ConfirmacionComponent);
+        modalRef.componentInstance.numeroPedido = numeroPedido;
+  }
+
+  public mostrarError(mensajeError: string) {
+    const modalRef = this.modalService.open(ErrorComponent);
+    modalRef.componentInstance.MensajeError = mensajeError;
   }
 }

@@ -16,14 +16,14 @@ export class ConsultaComponent implements OnInit {
   consultaForm: FormGroup;
 
   constructor(private pedidoService: PedidoService, private modalService: NgbModal) { 
+  }
+
+  ngOnInit() {
     this.consultaForm = new FormGroup({
       nombre: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
       apellido: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
       numeroPedido: new FormControl('', [Validators.required, Validators.min(1)])
     });
-  }
-
-  ngOnInit() {
   }
   
   onSubmit() {
